@@ -1,5 +1,5 @@
 import { Chess } from "chess.js"
-import { useEffect, useState, useRef } from "react";
+import {  useState, useRef } from "react";
 import Rules from "../component/rules.jsx";
 import BoardElements from "./boardElement.jsx";
 import { undoMove } from "../utils/undoMove.js";
@@ -9,7 +9,7 @@ export default function ChessBoard() {
 
     let chessRef = useRef(new Chess('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1'))
     let chess = chessRef.current
-    let { timer, setTimer, fromState, showPromotionInput,
+    let { timer, setTimer, showPromotionInput,
         promotionText, setPromotionText } = useStore();
     let [board, setBoard] = useState(chess.board().reverse());
     let [move, setMove] = useState({
@@ -21,40 +21,9 @@ export default function ChessBoard() {
 
     console.log(move, seeTurn)
 
-    useEffect(() => {
-
-        if (move.from != null && move.to != null) {
-
-            try {
-
-                chess.move(move);
-                setTimer(true)
-
-                setTimeout(() => {
-                    setTimer(false)
-                }, 10000)
-
-                setMove({
-                    from: null,
-                    to: null,
-                    promotion: null
-                })
-                setBoard(chess.board().reverse())
-            } catch (err) {
-                setMove({
-                    from: null,
-                    to: null,
-                    promotion: null
-                })
-                console.log(err)
-            }
-        }
-
-    }, [fromState])
-    
     return (
         <>
-            <Rules chess={chess} />
+            <Rules chess={chess} setBoard={setBoard}/>
             <div className="h-screen w-screen flex justify-center items-center">
                 <div className="h-28 w-44 absolute right-4 top-4 bg-slate-500"
                 >
@@ -71,7 +40,7 @@ export default function ChessBoard() {
                 </div>
                 <div className="h-[400px] w-[400px] md:h-[500px] md:w-[500px] lg:w-[550px] lg:h-[550px] bg-amber-300 grid grid-cols-8"
                 >
-                    <BoardElements board={board} move={move} chess={chess} setMove={setMove} />
+                    <BoardElements board={board} move={move} chess={chess} setMove={setMove} setBoard={setBoard}/>
                 </div>
             </div>
         </>

@@ -1,30 +1,42 @@
-import attacker from "../utils/attacker.js";
-import nextPlayable from "../utils/playable.js";
-import { useEffect, useState } from "react";
 import { CreateChessBoardF } from "../utils/createChessBoard.jsx";
 import useStore from "../Store.jsx";
+import { useEffect } from "react";
 
-export default function BoardElements({ board, move, chess, setMove }) {
-
-    let [viewAttacker, setViewAttacker] = useState([])
-    let [viewPlay, setViewPlay] = useState([])
-    let seeTurn = chess.turn();
-    let getPiece = chess.get(move?.from)
-    let {fromState} = useStore();
+export default function BoardElements({ board, move, chess, setMove, setBoard}) {
+    
+    let {setTimer, fromState} = useStore();
+    let createChessBoard = CreateChessBoardF(board, setMove, chess, move)
 
     useEffect(() => {
 
-        if (move.from != undefined && getPiece.color == seeTurn) {
-            setViewAttacker(attacker(move, chess))
-            setViewPlay(nextPlayable(move, chess))
-        } else {
-            setViewAttacker([])
-            setViewPlay([])
+        if (move.from != null && move.to != null) {
+
+            try {
+
+                chess.move(move);
+                setTimer(true)
+
+                setTimeout(() => {
+                    setTimer(false)
+                }, 10000)
+
+                setMove({
+                    from: null,
+                    to: null,
+                    promotion: null
+                })
+                setBoard(chess.board().reverse())
+            } catch (err) {
+                setMove({
+                    from: null,
+                    to: null,
+                    promotion: null
+                })
+                console.log(err)
+            }
         }
 
-    }, [move]) 
-    
-    let createChessBoard = CreateChessBoardF(board, viewAttacker, viewPlay, setMove, chess, move)
+    }, [fromState])
 
     return (
         <>

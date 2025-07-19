@@ -1,4 +1,4 @@
-export default function Rules({chess}){
+export default function Rules({chess, setBoard}){
 
     function rules() {
     
@@ -7,8 +7,10 @@ export default function Rules({chess}){
             let isDraw = chess.isInsufficientMaterial() || chess.isStalemate() || chess.isDraw();
             let threeTimes = chess.isThreefoldRepetition()
             let turn = chess.turn()
-    
-            if (isCheck) {
+        
+            console.log(isCheckMate,isCheck)
+
+            if (isCheck && isCheckMate == false) {
                 if (turn == 'w') {
                     console.log('white you are checked')
                 } else {
@@ -16,18 +18,22 @@ export default function Rules({chess}){
                 }
             } else if (isCheckMate) {
                 if (turn == 'w') {
-                    alert('white you are checkmated')
+                    console.log('white you are checkmated')
                     chess.clear()
+                    setBoard(chess.board().reverse())
                 } else {
-                    alert('black you are checkmated')
+                    console.log('black you are checkmated')
                     chess.clear()
+                    setBoard(chess.board().reverse())
                 }
             } else if (isDraw) {
-                alert('match is draw due to insuffieint materail or due to stallement')
+                console.log('match is draw due to insuffieint materail or due to stallement')
                 chess.clear()
+                setBoard(chess.board().reverse())
             } else if(threeTimes){
-                alert('match is draw due to three times same thing happening')
+                console.log('match is draw due to three times same thing happening')
                 chess.clear()
+                setBoard(chess.board().reverse())
             } 
         }
     
