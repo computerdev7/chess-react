@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export default function BoardElements({ board, move, chess, setMove, setBoard}) {
     
-    let {setTimer, fromState} = useStore();
+    let {fromState} = useStore();
     let createChessBoard = CreateChessBoardF(board, setMove, chess, move)
 
     useEffect(() => {
@@ -14,12 +14,6 @@ export default function BoardElements({ board, move, chess, setMove, setBoard}) 
             try {
 
                 chess.move(move);
-                setTimer(true)
-
-                setTimeout(() => {
-                    setTimer(false)
-                }, 10000)
-
                 setMove({
                     from: null,
                     to: null,
