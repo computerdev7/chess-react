@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import Rules from "../component/rules.jsx";
 import BoardElements from "./boardElement.jsx";
 import useStore from "../Store.jsx";
+import SocketIo from "./socketio.jsx";
 
 export default function ChessBoard() {
 
@@ -40,6 +41,7 @@ export default function ChessBoard() {
 
     return (
         <>
+            <SocketIo />
             <Rules chess={chess} setRestartGame={setRestartGame} />
             <div className="h-screen w-screen flex justify-center items-center">
                 <div className="h-28 w-44 absolute right-4 top-4 bg-slate-500 flex justify-center items-center flex-col rounded-md">

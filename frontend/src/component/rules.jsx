@@ -22,7 +22,6 @@ export default function Rules({ chess, setRestartGame }) {
             } else {
                 console.log('black you are checkmated')
                 setRestartGame(true)
-
             }
         } else if (isDraw) {
             console.log('match is draw due to insuffieint materail or due to stallement')
