@@ -7,22 +7,16 @@ let app = express();
 let server = createServer(app)
 let io = new Server(server, {
     cors: {
-    origin: "http://localhost:5173", // <-- this is the key part
+    origin: "http://localhost:5173",
     methods: ["GET", "POST"],
     credentials: true
   }
 });
 
-// app.use(cors());
-
-app.get('/',(req,res)=> {
-    res.send('success')
-})
-
 io.on('connection', (socket) => {
-    console.log('user connected');
+    console.log('user connected', socket.id);
     socket.on('disconnect', ()=> {
-        console.log('user disconnected')
+        console.log('user disconnected', socket.id)
     })
 })
 

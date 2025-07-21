@@ -5,7 +5,7 @@ import BoardElements from "./boardElement.jsx";
 import useStore from "../Store.jsx";
 import SocketIo from "./socketio.jsx";
 
-export default function ChessBoard() {
+export default function ChessBoard({condForPlay}) {
 
     let chessRef = useRef(new Chess('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1'))
     let chess = chessRef.current
@@ -20,23 +20,31 @@ export default function ChessBoard() {
     let seeTurn = chess.turn();
 
     console.log(move, seeTurn)
-
+    
     useEffect(() => {
-
+        
         if (restartGame == true) {
             chess.load('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1')
             setBoard(chess.board().reverse())
         }
-
+        
     }, [restartGame])
-
+    
     useEffect(() => {
-
+        
         if (restartGame == true) {
             setRestartGame(false)
         }
-
+        
     }, [board])
+
+    if(condForPlay == "false"){
+        return (
+            <>
+            <h1 className="text-center">no online game yet</h1>
+            </>
+        )
+    }
 
 
     return (

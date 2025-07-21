@@ -6,7 +6,7 @@ export default function SocketIo(){
     useEffect(()=> {
 
         socket.on('connect', ()=> {
-            console.log('user conected in frontend')
+            console.log('user conected in frontend', socket.id)
         })
 
         return () => {
