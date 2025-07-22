@@ -8,6 +8,25 @@ let useStore = create((set) => ({
     promotionText : '',
     setPromotionText : (val) => {
         set({promotionText : val })
+    },
+    onlineUsers : {
+        w : null,
+        b : null
+    },
+    setOnlineUsers : (user,val) => {
+        set((state)=> ({...state.onlineUsers, [user] : val }))
+    },
+    restartGame : false,
+    setRestartGame : (val)=> {
+        set({restartGame : val})
+    },
+    startGame : true,
+    setStartGame : (val)=> {
+        set({startGame : val})
+    },
+    userColor : '',
+    setUserColor : (val) => {
+        set({userColor : val})
     }
 }))
 

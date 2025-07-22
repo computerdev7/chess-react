@@ -1,4 +1,23 @@
-export default function Rules({ chess, setRestartGame }) {
+import { useEffect } from "react"
+
+export default function Rules({ chess, setRestartGame, board, setBoard, restartGame }) {
+
+    useEffect(() => {
+
+        if (restartGame == true) {
+            chess.load('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1')
+            setBoard(chess.board().reverse())
+        }
+
+    }, [restartGame])
+
+    useEffect(() => {
+
+        if (restartGame == true) {
+            setRestartGame(false)
+        }
+
+    }, [board])
 
     function rules() {
 
@@ -34,7 +53,6 @@ export default function Rules({ chess, setRestartGame }) {
     }
 
     rules();
-
 
     return
 }

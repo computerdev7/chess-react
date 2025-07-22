@@ -22,7 +22,7 @@ let chessArrayElements = createChessArrayElements();
 
 export function CreateChessBoardF(board, setMove, chess, move) {
 
-    let { fromState, setFromState, promotionText } = useStore();
+    let { fromState, setFromState, promotionText, userColor } = useStore();
 
     let el = chessArrayElements.map((e, i) => {
 
@@ -44,15 +44,18 @@ export function CreateChessBoardF(board, setMove, chess, move) {
             <div className={css} key={i}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={async () => {
-                    updateMove(e.place, chess, move, setMove, fromState, setFromState)
+                    console.log('userColor 1',userColor)
+                    updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText, userColor)
                 }}
                 onClick={() => {
-                    updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText)
+                    console.log('userColor 2')
+                    updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText, userColor)
                 }}
             >
                 <p draggable
                     onDragStart={() => {
-                        updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText)
+                        console.log('userColor 3')
+                        updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText, userColor)
                     }}
                     className="text-3xl w-fit h-fit"> {setRightPiece} </p> </div>)
     })

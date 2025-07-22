@@ -1,22 +1,25 @@
-export function updateMove(val, chess, move, setMove, fromState, setFromState, promotionText) {
+export function updateMove(val, chess, move, setMove, fromState, setFromState, promotionText, userColor) {
 
     let findPiece = chess.get(val);
     let getFromPiece = chess.get(move?.from);
     let getPieceMoves = chess.moves({ square: move?.from });
     let seeTurn = chess.turn()
+    // let {} = use
+    console.log(seeTurn, userColor)
 
-    
     if (findPiece?.color == getFromPiece?.color && findPiece != undefined && getFromPiece != undefined) {
         setMove((e) => ({ ...e, from: val }))
         setFromState(false)
         return
     } else if (findPiece?.color != seeTurn && getFromPiece == undefined) {
         return
+    } else if (seeTurn != userColor) {
+        return
     }
-    
-    let findEqualsFromGetPiece = Array.isArray(getPieceMoves)? getPieceMoves.find(e=> e.includes('=')) : undefined
 
-    if(findEqualsFromGetPiece){
+    let findEqualsFromGetPiece = Array.isArray(getPieceMoves) ? getPieceMoves.find(e => e.includes('=')) : undefined
+
+    if (findEqualsFromGetPiece) {
         return getPieceMoves.map((el) => {
             if (el.includes('=')) {
                 if (findPiece != undefined && fromState) {
