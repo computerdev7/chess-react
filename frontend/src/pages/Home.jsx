@@ -10,7 +10,6 @@ export default function Home() {
     useEffect(() => {
 
         if (getItem == null) {
-            console.log(getItem)
             navigate('/login')
         }
 

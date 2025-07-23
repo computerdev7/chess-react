@@ -1,11 +1,9 @@
-export function updateMove(val, chess, move, setMove, fromState, setFromState, promotionText, userColor) {
+export function updateMove(val, chess, move, setMove, fromState, setFromState, promotionText, userColor, condForPlay) {
 
     let findPiece = chess.get(val);
     let getFromPiece = chess.get(move?.from);
     let getPieceMoves = chess.moves({ square: move?.from });
     let seeTurn = chess.turn()
-    // let {} = use
-    console.log(seeTurn, userColor)
 
     if (findPiece?.color == getFromPiece?.color && findPiece != undefined && getFromPiece != undefined) {
         setMove((e) => ({ ...e, from: val }))
@@ -13,7 +11,7 @@ export function updateMove(val, chess, move, setMove, fromState, setFromState, p
         return
     } else if (findPiece?.color != seeTurn && getFromPiece == undefined) {
         return
-    } else if (seeTurn != userColor) {
+    } else if (seeTurn != userColor && condForPlay == 'false') {
         return
     }
 
@@ -31,7 +29,7 @@ export function updateMove(val, chess, move, setMove, fromState, setFromState, p
                 }
             }
         })
-    } else {
+    } else {    
         if (findPiece != undefined && fromState) {
             setMove((e) => ({ ...e, from: val }))
             setFromState(false)

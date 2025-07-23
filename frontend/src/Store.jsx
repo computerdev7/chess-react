@@ -27,6 +27,10 @@ let useStore = create((set) => ({
     userColor : '',
     setUserColor : (val) => {
         set({userColor : val})
+    },
+    condForPlay : '',
+    setCondForPlay : (val)=> {
+        set({condForPlay : val })
     }
 }))
 

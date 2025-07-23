@@ -1,45 +1,47 @@
 import { useEffect } from "react"
-import socket from "../utils/setUpSocketio"
+import socket from "../utils/setUpSocketio.js"
 import useStore from "../Store.jsx"
 
 export default function SocketIo({ chess, setBoard }) {
 
     let getItem = sessionStorage.getItem('userName')
     let { setUserColor } = useStore()
-
+    
     useEffect(() => {
 
+            console.log('socket running')
+
         socket.on('connect', () => {
+
+            console.log('socket running in useEffect')
 
             let id = socket.id
 
             console.log(id)
 
-            socket.emit('userid', { id, getItem })
-            socket.emit('userName', { userName: getItem, id }); //remove it afterwards
-            socket.emit('assigncolor', getItem)
+            socket.emit('userid', { id, userName : getItem })
 
             socket.on('chessbdata', (data) => {
 
                 chess.load(data)
-                
+
                 setBoard(chess.board().reverse());
 
             })
 
-            socket.on('userColor', (data) => {
+            socket.on('add', (data)=> {
 
-
-                setUserColor(data[getItem].color)
-
+                setUserColor(data.color)
 
             })
+
 
         })
 
         return () => {
             socket.disconnect();
         };
+
     }, [])
 
 

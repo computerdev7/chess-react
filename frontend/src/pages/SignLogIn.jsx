@@ -1,5 +1,4 @@
 import { useState } from "react"
-import socket from "../utils/setUpSocketio.jsx"
 import { useNavigate } from "react-router"
 
 export default function SignLogin(){
@@ -16,8 +15,6 @@ export default function SignLogin(){
             <button className="border w-16 border-black"
             onClick={()=> {
                 let store = sessionStorage.setItem('userName', userName );
-                let id = socket.id;
-                socket.emit('userName', {userName, id});
                 navigate('/')
             }}
             > SEND </button>

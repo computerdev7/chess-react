@@ -4,13 +4,12 @@ import Rules from "../component/rules.jsx";
 import BoardElements from "./boardElement.jsx";
 import useStore from "../Store.jsx";
 import SocketIo from "./socketio.jsx";
-import socket from "../utils/setUpSocketio.jsx";
 
 export default function ChessBoard({condForPlay}) {
 
     let chessRef = useRef(new Chess('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - - 0 1'))
     let chess = chessRef.current
-    let { promotionText, setPromotionText , restartGame, setRestartGame, userColor} = useStore();
+    let { promotionText, setPromotionText , restartGame, setRestartGame, setCondForPlay, userColor} = useStore();
     let [board, setBoard] = useState(chess.board().reverse());
     let [move, setMove] = useState({
         from: null,
@@ -20,7 +19,13 @@ export default function ChessBoard({condForPlay}) {
     let seeTurn = chess.turn();
     let getItem = sessionStorage.getItem('userName')
 
-    console.log(move, seeTurn)
+    useEffect(()=> {
+
+        setCondForPlay(condForPlay)
+
+    },[])
+
+    console.log(move, seeTurn, userColor, getItem)
 
     return (
         <>
@@ -34,7 +39,7 @@ export default function ChessBoard({condForPlay}) {
                 </div>
                 <div className="h-[400px] w-[400px] md:h-[500px] md:w-[500px] lg:w-[550px] lg:h-[550px] bg-amber-300 grid grid-cols-8"
                 >
-                    <BoardElements board={board} move={move} chess={chess} setMove={setMove} setBoard={setBoard} condForPlay={condForPlay}/>
+                    <BoardElements board={board} move={move} chess={chess} setMove={setMove} setBoard={setBoard} />
                 </div>
             </div>
         </>

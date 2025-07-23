@@ -1,15 +1,13 @@
 import { CreateChessBoardF } from "../utils/createChessBoard.jsx";
 import useStore from "../Store.jsx";
 import { useEffect } from "react";
-import socket from "../utils/setUpSocketio.jsx";
+import socket from "../utils/setUpSocketio.js";
 
-export default function BoardElements({ board, move, chess, setMove, setBoard, condForPlay }) {
+export default function BoardElements({ board, move, chess, setMove, setBoard}) {
 
-    let { fromState, userColor } = useStore();
+    let { fromState, userColor, condForPlay } = useStore();
     let createChessBoard = CreateChessBoardF(board, setMove, chess, move)
-
-    console.log(userColor)
-
+    
     useEffect(() => {
 
         if (move.from != null && move.to != null) {
