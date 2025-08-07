@@ -31,6 +31,10 @@ let useStore = create((set) => ({
     partner : false,
     setPartner : (val) => {
         set({partner : val})
+    },
+    showAlert : false,
+    setShowAlert : (val) => {
+        set({showAlert : val})
     }
 }))
 

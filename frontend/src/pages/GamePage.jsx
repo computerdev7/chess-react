@@ -10,12 +10,14 @@ export default function GamePage(){
      useEffect(() => {
 
         if (getItem == null) {
-            navigate('/login')
+            navigate('/')
         }
         
     }, [])
 
     return (
+        <>
         <ChessBoard/>
+        </>
     )
 }
