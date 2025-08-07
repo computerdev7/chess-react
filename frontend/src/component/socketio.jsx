@@ -12,6 +12,7 @@ export default function SocketIo({ chess, setBoard }) {
         socket.on('connect', () => {
             let id = socket.id
             socket.emit('userid', { id, userName: getItem })
+            socket.emit('getFen', { id, userName: getItem })
         })
 
          socket.on('chessbdata', (data) => {
@@ -53,6 +54,14 @@ export default function SocketIo({ chess, setBoard }) {
             setTimeout(()=> {
                 window.location.reload();
             },100)
+
+        })
+
+        socket.on('fendata', (data)=> {
+
+            chess.load(data)
+
+            setBoard(chess.board().reverse());
 
         })
 

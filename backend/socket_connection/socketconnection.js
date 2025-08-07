@@ -1,13 +1,15 @@
 import { checkUser } from "./socket_utils/checkUser.js";
 import { removeOffline } from "./socket_utils/removeOfflineUser.js";
+import client from "../redis/redis.js";
 
-export default function SocketFunc(io) {
+export default async function SocketFunc(io) {
 
-    let users = new Map()
-    let user2 = {}
-    let arr = []
+    let users = new Map();
+    let user2 = {};
+    let arr = [];
     let roomNumber = 1;
-
+    let fenData = new Map();
+    
     io.on('connection', (socket) => {
 
         console.log('user connected', socket.id);
@@ -56,14 +58,28 @@ export default function SocketFunc(io) {
 
             for (let [key, value] of users) {
                 if (value[0].userName == data.userName) {
+                    fenData.set(key,data.fenData);
                     io.to(value[1].id).emit('chessbdata', data.fenData)
                 } else if (value[1].userName == data.userName) {
+                    fenData.set(key,data.fenData);
                     io.to(value[0].id).emit('chessbdata', data.fenData)
                 }
             }
 
         })
 
+        socket.on('getFen',(data)=> {
+
+            for (let [key,value] of users){
+                if(value[0].userName == data.userName){
+                    let data = fenData.get(key)
+                    io.to(value[0].id).emit('fendata',data);
+                } else if(value[1].userName == data.userName) {
+                    let data = fenData.get(key);
+                    io.to(value[1].id).emit('fendata',data);
+                }
+            }
+        })
 
         socket.on('setOnline', (data) => {
 
