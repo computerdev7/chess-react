@@ -28,9 +28,9 @@ let useStore = create((set) => ({
     setUserColor : (val) => {
         set({userColor : val})
     },
-    condForPlay : '',
-    setCondForPlay : (val)=> {
-        set({condForPlay : val })
+    partner : false,
+    setPartner : (val) => {
+        set({partner : val})
     }
 }))
 

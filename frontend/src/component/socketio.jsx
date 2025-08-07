@@ -4,42 +4,61 @@ import useStore from "../Store.jsx"
 
 export default function SocketIo({ chess, setBoard }) {
 
-    let getItem = sessionStorage.getItem('userName')
-    let { setUserColor } = useStore()
+    let getItem = sessionStorage.getItem('userName');
+    let { setUserColor, setPartner } = useStore();
     
     useEffect(() => {
-
-            console.log('socket running')
-
+        
         socket.on('connect', () => {
-
-            console.log('socket running in useEffect')
-
             let id = socket.id
+            socket.emit('userid', { id, userName: getItem })
+        })
 
-            console.log(id)
+         socket.on('chessbdata', (data) => {
 
-            socket.emit('userid', { id, userName : getItem })
+            chess.load(data)
 
-            socket.on('chessbdata', (data) => {
+            setBoard(chess.board().reverse());
 
-                chess.load(data)
+        })
 
-                setBoard(chess.board().reverse());
+         socket.on('add', (data) => {
 
-            })
+            setUserColor(data.color)
+ 
+        })
 
-            socket.on('add', (data)=> {
+        let id = socket.id;
 
-                setUserColor(data.color)
+        socket.emit('userid', { id, userName: getItem })
 
-            })
+        let interval = setInterval(()=> {
 
+            socket.emit('setOnline',getItem)
+
+        },5000)
+
+        socket.on('partner',()=> {
+
+            setPartner(true)
+
+        })
+
+        socket.on('nopartner',()=> {
+
+            chess.reset();
+            setBoard(chess.board().reverse());
+            setPartner(false);
+
+            setTimeout(()=> {
+                window.location.reload();
+            },100)
 
         })
 
         return () => {
             socket.disconnect();
+            clearInterval(interval)
         };
 
     }, [])
