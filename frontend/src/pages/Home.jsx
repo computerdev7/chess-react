@@ -21,12 +21,14 @@ export default function Home() {
             <div className="h-screen w-screen flex justify-center items-center gap-5">
                 <button className="h-16 w-28 border border-black"
                     onClick={() => {
-                        navigate('/game', { state: "false"})
+                        navigate('/game')
+                        sessionStorage.setItem('condForPlay',true)
                     }}
                 > Online </button>
                 <button className="h-16 w-28 border border-black"
                     onClick={() => {
-                        navigate('/game', { state: true })
+                        navigate('/game')
+                        sessionStorage.setItem('condForPlay',false)
                     }}
                 > Offline </button>
             </div>

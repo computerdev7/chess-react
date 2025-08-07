@@ -5,9 +5,10 @@ import socket from "../utils/setUpSocketio.js";
 
 export default function BoardElements({ board, move, chess, setMove, setBoard}) {
 
-    let { fromState, userColor, condForPlay } = useStore();
+    let { fromState } = useStore();
     let createChessBoard = CreateChessBoardF(board, setMove, chess, move)
-    
+    let condForPlay = sessionStorage.getItem('condForPlay')
+
     useEffect(() => {
 
         if (move.from != null && move.to != null) {
@@ -23,7 +24,7 @@ export default function BoardElements({ board, move, chess, setMove, setBoard}) 
                 })
 
  
-                if (condForPlay == 'false') {
+                if (condForPlay == 'true') {
 
                     let fenData = chess.fen();
                     let userName = sessionStorage.getItem('userName')

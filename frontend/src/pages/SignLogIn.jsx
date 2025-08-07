@@ -3,7 +3,7 @@ import { useNavigate } from "react-router"
 
 export default function SignLogin(){
 
-    let [userName , setUserName] = useState('')
+    let [userName , setUserName] = useState('');
     let navigate = useNavigate();
 
     return (
@@ -14,7 +14,7 @@ export default function SignLogin(){
             type="text" />
             <button className="border w-16 border-black"
             onClick={()=> {
-                let store = sessionStorage.setItem('userName', userName );
+                sessionStorage.setItem('userName', userName );
                 navigate('/')
             }}
             > SEND </button>

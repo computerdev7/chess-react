@@ -22,7 +22,9 @@ let chessArrayElements = createChessArrayElements();
 
 export function CreateChessBoardF(board, setMove, chess, move) {
 
-    let { fromState, setFromState, promotionText, userColor, condForPlay } = useStore();
+    let { fromState, setFromState, promotionText, userColor } = useStore();
+    let condForPlay = sessionStorage.getItem('condForPlay')
+    
 
     let el = chessArrayElements.map((e, i) => {
 

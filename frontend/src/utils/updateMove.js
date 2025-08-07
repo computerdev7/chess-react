@@ -5,13 +5,14 @@ export function updateMove(val, chess, move, setMove, fromState, setFromState, p
     let getPieceMoves = chess.moves({ square: move?.from });
     let seeTurn = chess.turn()
 
+
     if (findPiece?.color == getFromPiece?.color && findPiece != undefined && getFromPiece != undefined) {
         setMove((e) => ({ ...e, from: val }))
         setFromState(false)
         return
     } else if (findPiece?.color != seeTurn && getFromPiece == undefined) {
         return
-    } else if (seeTurn != userColor && condForPlay == 'false') {
+    } else if (seeTurn != userColor && condForPlay == 'true') {
         return
     }
 
