@@ -20,7 +20,7 @@ export default function Home() {
 
     return (
         <>
-            {showAlert && <Alert /> }
+            {showAlert && <Alert username={true} />}
             <div className="h-screen w-screen flex justify-center items-center gap-5">
                 <button className="h-16 w-28 border border-black"
                     onClick={() => {

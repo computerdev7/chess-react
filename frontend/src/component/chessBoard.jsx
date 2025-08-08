@@ -26,7 +26,7 @@ export default function ChessBoard() {
     return (
         <>
             {condForPlay == 'true' && <SocketIo chess={chess} setBoard={setBoard} />}
-            <Rules chess={chess} setRestartGame={setRestartGame} board={board} restartGame={restartGame} setBoard={setBoard} />
+            <Rules chess={chess} setRestartGame={setRestartGame} board={board} restartGame={restartGame} setBoard={setBoard} move={move} />
             {condForPlay == 'true' ?
                 (partner ?
                     <div className="h-screen w-screen flex justify-center items-center">

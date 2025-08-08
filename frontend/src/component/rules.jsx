@@ -1,6 +1,11 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import useStore from "../Store.jsx";
+import Alert from "./Alert.jsx";
 
-export default function Rules({ chess, setRestartGame, board, setBoard, restartGame }) {
+export default function Rules({ chess, setRestartGame, board, setBoard, restartGame, move }) {
+
+    let [alertData, setAlertData] = useState('');
+    let { showAlert, setShowAlert } = useStore();
 
     useEffect(() => {
 
@@ -19,7 +24,7 @@ export default function Rules({ chess, setRestartGame, board, setBoard, restartG
 
     }, [board])
 
-    function rules() {
+    useEffect(() => {
 
         let isCheck = chess.inCheck()
         let isCheckMate = chess.isCheckmate()
@@ -35,24 +40,26 @@ export default function Rules({ chess, setRestartGame, board, setBoard, restartG
             }
         } else if (isCheckMate) {
             if (turn == 'w') {
-                console.log('white you are checkmated')
-                setRestartGame(true)
-
+                setAlertData('white is checkmated')
+                setShowAlert(true)
             } else {
-                console.log('black you are checkmated')
-                setRestartGame(true)
+                setAlertData('black is checkmated')
+                setShowAlert(true)
             }
         } else if (isDraw) {
-            console.log('match is draw due to insuffieint materail or due to stallement')
-            setRestartGame(true)
+            setAlertData('match is draw due to insuffieint materail or due to stallement')
+            setShowAlert(true)
         } else if (threeTimes) {
-            console.log('match is draw due to three times same thing happening')
-            setRestartGame(true)
-
+            setAlertData('match is draw due to three times same thing happening')
+            setShowAlert(true)
         }
-    }
 
-    rules();
+    },[move])
 
-    return
+
+    return (
+        <>
+            {showAlert && <Alert username={false} gameResult={alertData} />}
+        </>
+    )
 }
