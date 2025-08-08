@@ -9,6 +9,10 @@ export default function SocketIo({ chess, setBoard }) {
     
     useEffect(() => {
         
+        if(!socket.connected){
+            socket.connect()
+        }
+
         socket.on('connect', () => {
             let id = socket.id
             socket.emit('userid', { id, userName: getItem })
