@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router"
 import Alert from "../component/Alert";
 import useStore from "../Store.jsx";
-import bgImage from "../../assets/BImage.jpg";
-import TabImage from "../../assets/tab.jpg";
-import MobileImage from "../../assets/mobile.jpg";
+import bgImage from "../../public/assets/Bimage.jpg";
+import TabImage from "../../public/assets/tab.jpg";
+import MobileImage from "../../public/assets/mobile.jpg";
 import { useState } from "react";
 
 export default function Home() {

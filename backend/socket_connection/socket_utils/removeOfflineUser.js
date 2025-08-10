@@ -22,8 +22,6 @@ export function removeOffline(users, io, arr) {
             }
         }
 
-        console.log(users)
-
     }, 10000)
 
 }

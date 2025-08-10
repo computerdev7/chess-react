@@ -11,14 +11,12 @@ export default async function SocketFunc(io) {
     
     io.on('connection', (socket) => {
 
-        console.log('user connected', socket.id);
-
         socket.on('userid', ({ id, userName }) => {
 
             if (arr.length == 0) {
 
                 if (checkUser(users, userName, id, io) == true) {
-                    console.log('same user')
+                    'same user'
                 } else {
                     user2 = { userName, id, roomNumber, color: 'w' }
                     io.to(id).emit('add', { color: 'w' })
@@ -29,7 +27,7 @@ export default async function SocketFunc(io) {
             } else if (arr.length == 1) {
 
                 if (checkUser(users, userName, id, io) == true) {
-                    console.log('same user')
+                    'same user'
                 } else if (arr[0].userName == userName) {
                     arr[0].id = id;
                     io.to(id).emit('add', { color: 'w' })
@@ -47,8 +45,6 @@ export default async function SocketFunc(io) {
                 }
 
             }
-
-            console.log(users)
 
         })
 
@@ -98,8 +94,7 @@ export default async function SocketFunc(io) {
 
 
         socket.on('disconnect', () => {
-            console.log('user disconnected', socket.id)
-
+            socket.id
         })
 
     })

@@ -18,10 +18,7 @@ export default function ChessBoard() {
         promotion: null
     })
     let seeTurn = chess.turn();
-    let getItem = sessionStorage.getItem('userName')
     let condForPlay = sessionStorage.getItem('condForPlay')
-
-    console.log(move, seeTurn, userColor, getItem)
 
     return (
         <>
