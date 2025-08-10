@@ -4,7 +4,7 @@ import Rules from "../component/rules.jsx";
 import BoardElements from "./boardElement.jsx";
 import useStore from "../Store.jsx";
 import SocketIo from "./socketio.jsx";
-
+import { LuLoaderCircle } from "react-icons/lu";
 
 export default function ChessBoard() {
 
@@ -41,8 +41,9 @@ export default function ChessBoard() {
                         </div>
                     </div>
                     : 
-                    <div className="h-screen w-screen flex justify-center items-center bg-blue-700">
-                        <h1 className="h-24 text-white">Waiting for the other player</h1>
+                    <div className="h-screen w-screen flex justify-center gap-5 items-center bg-black/90">
+                        <LuLoaderCircle  className="text-2xl text-white/30 animate-spin"/>
+                        <h1 className=" text-white/30 hover:text-white/100">Waiting for the other player</h1>
                     </div>
                 ) :
                 <div className="h-screen w-screen flex justify-center items-center">
