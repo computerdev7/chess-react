@@ -5,7 +5,7 @@ import socket from "../utils/setUpSocketio.js";
 
 export default function BoardElements({ board, move, chess, setMove, setBoard}) {
 
-    let { fromState } = useStore();
+    let { fromState,playSound } = useStore();
     let createChessBoard = CreateChessBoardF(board, setMove, chess, move)
     let condForPlay = sessionStorage.getItem('condForPlay')
 
@@ -16,6 +16,7 @@ export default function BoardElements({ board, move, chess, setMove, setBoard}) 
             try {
 
                 chess.move(move);
+                playSound();
 
                 setMove({
                     from: null,

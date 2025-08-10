@@ -1,4 +1,5 @@
 import {create} from "zustand"
+// import audio from "../assets/move.mp3"
 
 let useStore = create((set) => ({
     fromState : true,
@@ -35,6 +36,14 @@ let useStore = create((set) => ({
     showAlert : false,
     setShowAlert : (val) => {
         set({showAlert : val})
+    },
+    showPromotionInput : false,
+    setShowPromotionInput : (val)=> {
+        set({showPromotionInput : val })
+    },
+    playSound : ()=> {
+        const sound = new Audio('../assets/move.mp3')
+        sound.play();
     }
 }))
 

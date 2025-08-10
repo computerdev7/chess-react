@@ -1,6 +1,5 @@
 import { checkUser } from "./socket_utils/checkUser.js";
 import { removeOffline } from "./socket_utils/removeOfflineUser.js";
-import client from "../redis/redis.js";
 
 export default async function SocketFunc(io) {
 

@@ -1,12 +1,11 @@
-export function updateMove(val, chess, move, setMove, fromState, setFromState, promotionText, userColor, condForPlay) {
+export function updateMove(val, chess, move, setMove, fromState, setFromState, promotionText, userColor, condForPlay, setShowPromotionInput) {
 
     let findPiece = chess.get(val);
     let getFromPiece = chess.get(move?.from);
     let getPieceMoves = chess.moves({ square: move?.from });
     let seeTurn = chess.turn()
 
-
-    if (findPiece?.color == getFromPiece?.color && findPiece != undefined && getFromPiece != undefined) {
+    if (findPiece?.color == getFromPiece?.color && findPiece != undefined && getFromPiece != undefined ) {
         setMove((e) => ({ ...e, from: val }))
         setFromState(false)
         return
@@ -22,9 +21,11 @@ export function updateMove(val, chess, move, setMove, fromState, setFromState, p
         return getPieceMoves.map((el) => {
             if (el.includes('=')) {
                 if (findPiece != undefined && fromState) {
+                    setShowPromotionInput(true)
                     setMove((e) => ({ ...e, from: val, promotion: promotionText }))
                     setFromState(false)
                 } else if (fromState == false) {
+                    setShowPromotionInput(false)
                     setMove((e) => ({ ...e, to: val }))
                     setFromState(true)
                 }
@@ -32,9 +33,11 @@ export function updateMove(val, chess, move, setMove, fromState, setFromState, p
         })
     } else {    
         if (findPiece != undefined && fromState) {
+            setShowPromotionInput(false)
             setMove((e) => ({ ...e, from: val }))
             setFromState(false)
         } else if (fromState == false) {
+            setShowPromotionInput(false)
             setMove((e) => ({ ...e, to: val }))
             setFromState(true)
         }

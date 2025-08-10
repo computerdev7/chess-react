@@ -22,7 +22,7 @@ let chessArrayElements = createChessArrayElements();
 
 export function CreateChessBoardF(board, setMove, chess, move) {
 
-    let { fromState, setFromState, promotionText, userColor } = useStore();
+    let { fromState, setFromState, promotionText, userColor, setShowPromotionInput } = useStore();
     let condForPlay = sessionStorage.getItem('condForPlay')
     
 
@@ -34,11 +34,11 @@ export function CreateChessBoardF(board, setMove, chess, move) {
 
         if (e.isWhite) {
 
-            css = "aspect-square w-full h-full border flex items-center justify-center bg-white text-black"
+            css = "aspect-square w-full h-full flex items-center justify-center bg-[#FFF488]/50 backdrop-blur-sm text-black "
 
         } else {
 
-            css = "aspect-square w-full h-full border flex items-center justify-center bg-black text-white"
+            css = "aspect-square w-full h-full flex items-center justify-center bg-[#50492F]/50 backdrop-blur-sm text-yellow-100 "
 
         }
 
@@ -46,17 +46,17 @@ export function CreateChessBoardF(board, setMove, chess, move) {
             <div className={css} key={i}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={async () => {
-                    updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText, userColor, condForPlay)
+                    updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText, userColor, condForPlay, setShowPromotionInput)
                 }}
                 onClick={() => {
-                    updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText, userColor, condForPlay)
+                    updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText, userColor, condForPlay, setShowPromotionInput)
                 }}
             >
                 <p draggable
                     onDragStart={() => {
-                        updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText, userColor, condForPlay)
+                        updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText, userColor, condForPlay, setShowPromotionInput)
                     }}
-                    className="text-3xl w-fit h-fit"> {setRightPiece} </p> </div>)
+                    className="text-3xl md:text-4xl lg:text-5xl w-fit h-fit"> {setRightPiece} </p> </div>)
     })
 
     return el;
