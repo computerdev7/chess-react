@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "server" : "nodemon backend/index.js"
+    "server" : "nodemon backend/index.js",
+    "start" : "node backend/index.js"
   },
   "type": "module",
   "dependencies": {
