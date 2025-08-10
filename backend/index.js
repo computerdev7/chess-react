@@ -7,7 +7,7 @@ import SocketFunc from "./socket_connection/socketconnection.js"
 let app = express();
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://warm-torrone-9ccbff.netlify.app/",
     methods: ["GET", "POST", "OPTIONS"] ,
     allowedHeaders: ["Content-Type"],
     credentials: true
@@ -15,7 +15,7 @@ app.use(cors({
 let server = createServer(app)
 let io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "https://warm-torrone-9ccbff.netlify.app/",
         methods: ["GET", "POST"],
         credentials: true
     }

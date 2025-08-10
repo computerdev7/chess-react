@@ -31,7 +31,7 @@ export default function Alert({ username, gameResult }) {
                                 onClick={async () => {
                                     try {
                                         if (userName.length > 2) {
-                                            const response = await fetch("http://localhost:3000/setUser", {
+                                            const response = await fetch("https://chess-react-8rwz.onrender.com/setUser", {
                                                 method: "POST",
                                                 headers: {
                                                     "Content-Type": "application/json",
