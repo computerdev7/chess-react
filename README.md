@@ -5,6 +5,4 @@ this below is the list of the future upgrades
 2. database integration and redis integration
 3. username with password for letting the username persist (right now one user can choose one username and for only one time since sessionStorage is used so on tab only.
 4. leaderboard,ratings,profile,win streaks etc
-5. drag and drop: right now it is implemented but there are not right element like png type pieces
-
-aniket chutiyee
+5. drag and drop: right now it is implemented but there are not right element like png type piece
