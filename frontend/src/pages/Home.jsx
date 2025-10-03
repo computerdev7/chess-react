@@ -43,7 +43,7 @@ export default function Home() {
     return (
         <>
             {showAlert && <Alert username={true} />}
-            <div className={`h-screen w-screen flex justify-center items-center gap-5 `}
+            <div className={`h-[100dvh] w-screen flex justify-center items-center gap-5 `}
             >
                 <img
                     className="absolute -z-50 w-full h-full object-cover"
