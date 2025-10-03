@@ -35,7 +35,7 @@ export default function ChessBoard() {
                     }}
                     className="h-screen w-screen flex justify-between items-center flex-col md:flex-row md:justify-center">
                     <div className="flex-[0.7] flex justify-center items-center md:flex-[0.8]">
-                        <div className=" h-[350px] w-[350px] min-[450px]:h-[400px] min-[450px]:w-[400px] md:h-[500px] md:w-[500px] lg:w-[650px] lg:h-[650px]  grid grid-cols-8"
+                        <div className=" h-[350px] w-[350px] min-[450px]:h-[400px] min-[450px]:w-[400px] md:h-[500px] md:w-[500px] lg:w-[550px] lg:h-[550px]  grid grid-cols-8"
                         >
                             <BoardElements board={board} move={move} chess={chess} setMove={setMove} setBoard={setBoard} />
                         </div>
@@ -71,7 +71,7 @@ export default function ChessBoard() {
                     }}
                     className="h-screen w-screen flex justify-between items-center flex-col md:flex-row md:justify-center">
                     <div className="flex-[0.7] flex justify-center items-center md:flex-[0.8]">
-                        <div className=" h-[350px] w-[350px] min-[450px]:h-[400px] min-[450px]:w-[400px] md:h-[500px] md:w-[500px] lg:w-[650px] lg:h-[650px]  grid grid-cols-8"
+                        <div className=" h-[350px] w-[350px] min-[450px]:h-[400px] min-[450px]:w-[400px] md:h-[500px] md:w-[500px] lg:w-[550px] lg:h-[550px]  grid grid-cols-8"
                         >
                             <BoardElements board={board} move={move} chess={chess} setMove={setMove} setBoard={setBoard} />
                         </div>
