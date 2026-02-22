@@ -3,7 +3,7 @@ import Home from "./pages/Home.jsx"
 import GamePage from "./pages/GamePage.jsx"
 
 export default function App() {
-
+  console.log('connected with deployment')
   return (
     <>
       <Routes>
