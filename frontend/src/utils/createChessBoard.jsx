@@ -56,7 +56,8 @@ export function CreateChessBoardF(board, setMove, chess, move) {
                     onDragStart={() => {
                         updateMove(e.place, chess, move, setMove, fromState, setFromState, promotionText, userColor, condForPlay, setShowPromotionInput)
                     }}
-                    className="text-3xl md:text-4xl lg:text-5xl w-fit h-fit"> {setRightPiece} </p> </div>)
+                    className="text-4xl md:text-5xl lg:text-6xl w-fit h-fit"> {setRightPiece} </p>
+                     </div>)
     })
 
     return el;

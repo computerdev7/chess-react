@@ -8,28 +8,28 @@ export function getRightPiece(boardPiece) {
     if (boardPiece == null) {
         return ''
     } else if (boardPiece.type === 'p' && boardPiece.color === 'b') {
-        return <TbChessFilled />
+        return <TbChessFilled className="text-black " />
     } else if (boardPiece.type === 'p' && boardPiece.color === 'w') {
-        return <TbChess />
+        return <TbChess className="text-white" />
     } else if (boardPiece.type === 'r' && boardPiece.color === 'b') {
-        return <TbChessRookFilled />
+        return <TbChessRookFilled className="text-black" />
     } else if (boardPiece.type === 'r' && boardPiece.color === 'w') {
-        return <TbChessRook />
+        return <TbChessRook className="text-white" />
     } else if (boardPiece.type === 'n' && boardPiece.color === 'b') {
-        return <TbChessKnightFilled />
+        return <TbChessKnightFilled className="text-black" />
     } else if (boardPiece.type === 'n' && boardPiece.color === 'w') {
-        return <TbChessKnight />
+        return <TbChessKnight className="text-white" />
     } else if (boardPiece.type === 'q' && boardPiece.color === 'b') {
-        return <TbChessQueenFilled />
+        return <TbChessQueenFilled className="text-black" />
     } else if (boardPiece.type === 'q' && boardPiece.color === 'w') {
-        return <TbChessQueen />
+        return <TbChessQueen className="text-white" />
     } else if (boardPiece.type === 'k' && boardPiece.color === 'b') {
-        return <TbChessKingFilled />
+        return <TbChessKingFilled className="text-black" />
     } else if (boardPiece.type === 'k' && boardPiece.color === 'w') {
-        return <TbChessKing />
+        return <TbChessKing className="text-white" />
     } else if (boardPiece.type === 'b' && boardPiece.color === 'b') {
-        return <TbChessBishopFilled />
+        return <TbChessBishopFilled className="text-black" />
     } else if (boardPiece.type === 'b' && boardPiece.color === 'w') {
-        return <TbChessBishop />
+        return <TbChessBishop className="text-white" />
     }
 }

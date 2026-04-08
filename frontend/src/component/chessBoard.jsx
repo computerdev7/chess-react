@@ -78,7 +78,7 @@ export default function ChessBoard() {
                     </div>
                     <div className="flex-[0.3] flex justify-start items-center pr-5 md:flex-[0.2]">
                         <div className=" h-36 w-44 bg-yellow-900/50 rounded-xl backdrop-blur-sm flex justify-center items-center flex-col text-white">
-                            <p>Turn : {seeTurn} </p>
+                            <p className="text-xl font-bold ">Turn : {seeTurn} </p>
                             {
                                 showPromotionInput && 
                             <div className="flex justify-center items-center flex-col ">
