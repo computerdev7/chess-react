@@ -4,7 +4,7 @@ import { Server } from "socket.io"
 import cors from "cors"
 import SocketFunc from "./socket_connection/socketconnection.js"
 import connectToDb from "./database/connectDatabase.js"
-import route from "./database/controllers/authController.js"
+import route from "./controllers/authController.js"
 
 let app = express();
 app.use(express.json());
