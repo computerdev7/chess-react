@@ -3,6 +3,8 @@ import { createServer } from "http"
 import { Server } from "socket.io"
 import cors from "cors"
 import SocketFunc from "./socket_connection/socketconnection.js"
+import connectToDb from "./database/connectDatabase.js"
+import route from "./database/controllers/authController.js"
 
 let app = express();
 app.use(express.json());
@@ -21,6 +23,7 @@ let io = new Server(server, {
     }
 });
 
+app.use('/user', route);
 
 let userList = new Map();
 
@@ -41,6 +44,7 @@ app.post('/setUser', (req, res) => {
 
 SocketFunc(io);
 
-server.listen(3000, () => {
+server.listen(3000, async() => {
+    await connectToDb();
     console.log('server is running')
 })

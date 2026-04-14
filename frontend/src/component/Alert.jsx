@@ -6,6 +6,7 @@ export default function Alert({ username, gameResult }) {
 
     let navigate = useNavigate()
     let [userName, setUserName] = useState('')
+    let [password, setPassword] = useState('')
     let { setShowAlert, setRestartGame } = useStore();
     let [wrongUserName, setWrongUserName] = useState(false);
 
@@ -25,7 +26,9 @@ export default function Alert({ username, gameResult }) {
                                 {wrongUserName && <p className="text-red-600 w-2/3 text-center leading-4 font-extrabold" >re-enter username since this user alrready exist or the username is invalid</p>}
                             </span>
                             <input className="w-3/5 p-2 rounded-lg outline-yellow-300 font-ChelseaMarket tracking-widest"
-                                onChange={(e) => setUserName(e.currentTarget.value)} value={userName} />
+                                onChange={(e) => setUserName(e.currentTarget.value)} value={userName} placeholder="username" />
+                            <input className="w-3/5 p-2 rounded-lg outline-yellow-300 font-ChelseaMarket tracking-widest"
+                                onChange={(e) => setPassword(e.currentTarget.value)} value={password} placeholder="password"/>
                             <button className="border font-ChelseaMarket p-3 rounded-2xl w-24 bg-blue-400/70 text-white/70 hover:bg-blue-400/90 
                             hover:text-white active:border-none"
                                 onClick={async () => {
@@ -48,6 +51,17 @@ export default function Alert({ username, gameResult }) {
                                             } else if (response.ok == false) {
                                                 setWrongUserName(true)
                                             }
+
+                                            const response1 = await fetch("https://chess-react-8rwz.onrender.com/user/reg", {
+                                                method: "POST",
+                                                headers: {
+                                                    "Content-Type": "application/json",
+                                                },
+                                                body: JSON.stringify({ username: userName, password }),
+                                            });
+
+                                            console.log(response1)
+
                                         } else {
                                             setWrongUserName(true)
                                         }
