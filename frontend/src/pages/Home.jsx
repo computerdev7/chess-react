@@ -45,7 +45,7 @@ export default function Home() {
             {showAlert && <Alert username={true} />}
             <div className={`h-[100dvh] w-screen flex justify-center items-center gap-5 `}
             >
-                <img fetchPriority="high"
+                <img fetchPriority="high" loading="lazy"
                     className="absolute -z-50 w-full h-full object-cover"
                     src={imageSize >= 750 ? bgImage : imageSize >= 500 ? TabImage : MobileImage }
                 />
