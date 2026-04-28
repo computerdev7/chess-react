@@ -9,7 +9,19 @@ let userModal = new mongoose.Schema({
     password : {
         type : String,
         required : true
-    }, 
+    },
+    win : {
+        type : Number,
+    },
+    loss : {
+        type : Number,
+    },
+    draw : {
+        type : Number
+    },
+    ranking : {
+        type : Number
+    }
 })
 
 let User = mongoose.model('User',userModal)

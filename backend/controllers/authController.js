@@ -11,10 +11,8 @@ route.post('/reg', async(req, res)=> {
             res.status(403).json({message: "username already exist"})
         }
         let userData = new User({username, password})
-        console.log(userData)
         await userData.save()
-        console.log('success')
-        res.status(201).json({message: "user created"})
+        res.status(201).json({message: username })
     }catch(err){
         console.log('unsuccess')
         res.status(500).json({message: "error in user registration"})
@@ -37,6 +35,5 @@ route.post('/login', async(req,res)=> {
         res.status(500).json({message: "error in user login"})
     }
 })
-
 
 export default route

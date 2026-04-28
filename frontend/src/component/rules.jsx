@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 import useStore from "../Store.jsx";
 import Alert from "./Alert.jsx";
+import axios from "axios";
 
-export default function Rules({ chess, setRestartGame, board, setBoard, restartGame, move }) {
+export default function Rules({ chess, setRestartGame, board, setBoard, restartGame, move, userColor }) {
 
     let [alertData, setAlertData] = useState('');
     let { showAlert, setShowAlert } = useStore();
+    let username1 = sessionStorage.getItem("username")
 
     useEffect(() => {
 
@@ -24,6 +26,12 @@ export default function Rules({ chess, setRestartGame, board, setBoard, restartG
 
     }, [board])
 
+    function updateProfile (username,result){
+        axios.put('https://chess-react-8rwz.onrender.com/userprofile/update', {username,result})
+        .then(res=> console.log('successfully updated'))
+        .catch(err=> console.log(err))
+    }
+
     useEffect(() => {
 
         let isCheck = chess.inCheck()
@@ -40,16 +48,31 @@ export default function Rules({ chess, setRestartGame, board, setBoard, restartG
             }
         } else if (isCheckMate) {
             if (turn == 'w') {
+                if(userColor == 'b'){
+                    updateProfile(username1, 'win')
+                } 
+                if(userColor == 'w'){
+                    updateProfile(username1, 'loss')
+                }
                 setAlertData('white is checkmated')
                 setShowAlert(true)
             } else {
+                if(userColor == 'w'){
+                    updateProfile(username1, 'win')
+                } 
+                if(userColor == 'b'){
+                    console.log('loss')
+                    updateProfile(username1, 'loss')
+                }
                 setAlertData('black is checkmated')
                 setShowAlert(true)
             }
         } else if (isDraw) {
+            updateProfile(username1, 'draw')
             setAlertData('match is draw due to insuffieint materail or due to stallement')
             setShowAlert(true)
         } else if (threeTimes) {
+            updateProfile(username1, 'draw')
             setAlertData('match is draw due to three times same thing happening')
             setShowAlert(true)
         }

@@ -5,6 +5,7 @@ import cors from "cors"
 import SocketFunc from "./socket_connection/socketconnection.js"
 import connectToDb from "./database/connectDatabase.js"
 import route from "./controllers/authController.js"
+import route2 from "./controllers/userController.js"
 
 let app = express();
 app.use(express.json());
@@ -24,6 +25,7 @@ let io = new Server(server, {
 });
 
 app.use('/user', route);
+app.use('/userprofile', route2);
 
 let userList = new Map();
 

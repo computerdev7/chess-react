@@ -1,5 +1,5 @@
 import { Chess } from "chess.js"
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Rules from "../component/rules.jsx";
 import BoardElements from "./boardElement.jsx";
 import useStore from "../Store.jsx";
