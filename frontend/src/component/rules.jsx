@@ -8,6 +8,10 @@ export default function Rules({ chess, setRestartGame, board, setBoard, restartG
     let [alertData, setAlertData] = useState('');
     let { showAlert, setShowAlert } = useStore();
     let username1 = sessionStorage.getItem("username")
+    let isCheck = chess.inCheck()
+    let isCheckMate = chess.isCheckmate()
+    let isDraw = chess.isInsufficientMaterial() || chess.isStalemate() || chess.isDraw();
+    let threeTimes = chess.isThreefoldRepetition()
 
     useEffect(() => {
 
@@ -77,7 +81,7 @@ export default function Rules({ chess, setRestartGame, board, setBoard, restartG
             setShowAlert(true)
         }
 
-    },[move])
+    }, [move, isCheck, isCheckMate, isDraw, threeTimes])
 
 
     return (
