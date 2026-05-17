@@ -7,7 +7,7 @@ export default function Rules({ chess, setRestartGame, board, setBoard, restartG
 
     let [alertData, setAlertData] = useState('');
     let { showAlert, setShowAlert } = useStore();
-    let username1 = sessionStorage.getItem("username")
+    let username1 = sessionStorage.getItem("userName")
     let isCheck = chess.inCheck()
     let isCheckMate = chess.isCheckmate()
     let isDraw = chess.isInsufficientMaterial() || chess.isStalemate() || chess.isDraw();

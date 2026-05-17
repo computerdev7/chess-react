@@ -7,8 +7,10 @@ route.post('/reg', async(req, res)=> {
     let {username, password} = req.body;
     try {
         let findUser = await User.findOne({username})
-        if(findUser) {
-            res.status(403).json({message: "username already exist"})
+        if(findUser && findUser.password != password) {
+           return res.status(403).json({message: "username already exist"})
+        } else if(findUser && findUser.password === password) {
+           return res.status(200).json({message : username})
         }
         let userData = new User({username, password})
         await userData.save()
