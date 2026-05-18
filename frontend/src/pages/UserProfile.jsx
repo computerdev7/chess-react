@@ -8,7 +8,7 @@ export default function UserProfile() {
     let [userInfo, setUserInfo] = useState({})
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/userprofile/${username1}`)
+        axios.get(`https://chess-react-8rwz.onrender.com/userprofile/${username1}`)
             .then((res) => {
                 setUserInfo(res.data.message)
             })
