@@ -7,11 +7,12 @@ import TabImage from "../../public/assets/tab.webp";
 import MobileImage from "../../public/assets/mobile.webp";
 import { useState } from "react";
 import { CgProfile } from "react-icons/cg";
+import RenderAlert from "../component/RenderAlert.jsx";
 
 export default function Home() {
 
     let navigate = useNavigate();
-    let { setShowAlert, showAlert } = useStore();
+    let { setShowAlert, showAlert, showRenderAlert, setShowRenderAlert } = useStore();
     let getItem = sessionStorage.getItem('userName')
     let [imageSize,setImageSize] = useState();
 
@@ -43,6 +44,7 @@ export default function Home() {
 
     return (
         <>
+            {showRenderAlert && <RenderAlert setShowRenderAlert={setShowRenderAlert} />}
             {showAlert && <Alert username={true} />}
             <div className={`h-[100dvh] w-screen flex justify-center items-center gap-5 relative `}
             >

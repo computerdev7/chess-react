@@ -43,6 +43,10 @@ let useStore = create((set) => ({
     playSound : ()=> {
         const sound = new Audio('/assets/move.mp3')
         sound.play();
+    },
+    showRenderAlert : true,
+    setShowRenderAlert : (val)=> {
+        set({showRenderAlert : val})
     }
 }))
 
